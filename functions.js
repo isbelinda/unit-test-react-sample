@@ -35,21 +35,21 @@ const getFacilityTypeFromRoute = name => {
     return id
 }
 
-const splitString = input => {
+const extractString = input => {
     if(!input) return false
     //return input.indexOf('data:image/png;base64,')? input : input.split('data:image/png;base64,')[1]
     return input.search(/data:image\/.*;base64,/g)? input : input.split(/data:image\/.*;base64,/g)[1]
 }
 
-const calculateBetweenDate = date => {
+const getDayCountFromDate = (date, current) => {
     let dateSelected = moment(date).valueOf()
-    let currentDate = moment(new Date()).valueOf()
+    let currentDate = moment(current).valueOf()
     return Math.round(Math.abs((dateSelected-currentDate)/MILLISECONDS_DAY))
 }
 
 export {
     sumNotification,
     getFacilityTypeFromRoute,
-    splitString,
-    calculateBetweenDate
+    extractString,
+    getDayCountFromDate
 }
